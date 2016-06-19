@@ -4,12 +4,12 @@ can.view.attr('f7-init', function(el, attrData) {
   console.log('f7-init !!!');
 
   if (!isSsr()){
-    System.import('framework7/dist/js/framework7').then(module => {
+    System.import('framework7/dist/js/framework7').then(f7 => {
 
       console.log('Framework7 loaded!!!');
 
       // Initialize app
-      var myApp = new module.Framework7();
+      var myApp = new f7.Framework7();
 
       // If we need to use custom DOM library, let's save it to $$ variable:
       var $$ = Dom7;

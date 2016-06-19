@@ -1,42 +1,13 @@
 # donejs-f-7
 
-Welcome to the donejs-f-7 DoneJS application!
-
-## Getting started
-
-To install all dependencies, (e.g. after cloning it from a Git repository) run
-
-``
-npm install donejs -g
-npm install
-```
-
-## Running tests
-
-Tests can be run with
+We want to avoid loading Framework7 module in SSR (there is some problem because SSR uses a simplified DOM).
+To initialize Framework7 in browser we need to dynamically load the module. See `f7-attr.js`.
 
 ```
-donejs test
-``
-
-## Development mode
-
-Development mode can be started with
-
-```
-donejs develop
-```
-
-## Build and production mode
-
-To build the application into a production bundle run
-
-```
-donejs build
-```
-
-In Unix environment the production application can be started like this:
-
-```
-NODE_ENV=production npm start
+if (notSSR) {
+  System.import('framework7').then(f7 => {
+    // initialize here:
+    var myApp = new f7.Framework7();
+  })
+}
 ```
