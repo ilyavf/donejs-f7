@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>My App</title>
+  </head>
+  <body f7-init>
+    <can-import from="donejs-f-7/styles.less!" />
+    <can-import from="donejs-f-7/app" export-as="viewModel" />
+    <can-import from="donejs-f-7/f7-attr"/>
+    <!-- Path to Framework7 iOS CSS theme styles-->
+    <can-import from="framework7/dist/css/framework7.ios.min.css"/>
+    <!-- Path to Framework7 iOS related color styles -->
+    <can-import from="framework7/dist/css/framework7.ios.colors.min.css"/>
+    <!-- Path to your custom app styles-->
+    <can-import from="framework7/dist/css/my-app.css"/>
+
+    {{>homeTemplate}}
+
+    {{#switch env.NODE_ENV}}
+      {{#case "production"}}
+        <script src="{{joinBase 'node_modules/steal/steal.production.js'}}"  main="donejs-f-7/index.stache!done-autorender"></script>
+      {{/case}}
+      {{#default}}
+        <script src="/node_modules/steal/steal.js"></script>
+      {{/default}}
+    {{/switch}}
+  </body>
+</html>
